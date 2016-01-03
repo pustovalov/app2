@@ -17,4 +17,5 @@
 .idea/*
 config/database.yml
 config/application.yml
+keys
 public/uploads/
