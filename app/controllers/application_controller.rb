@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include CardsHelper
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to main_app.login_path, :alert => exception.message
@@ -13,7 +14,7 @@ class ApplicationController < ActionController::Base
 
   def set_locale
     return I18n.locale = :en if [RailsAdmin].include?(self.class.parent)
-    
+
     locale = if current_user
                current_user.locale
              elsif params[:user_locale]
