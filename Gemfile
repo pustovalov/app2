@@ -34,6 +34,14 @@ gem 'newrelic_rpm'
 gem 'responders', '~> 2.0'
 gem 'haml', '~> 4.0.7'
 gem 'puma'
+gem 'rails_admin'
+gem 'rolify'
+gem 'cancancan', '~> 1.10'
+
+group :development, :test do
+  gem "better_errors"
+  gem "binding_of_caller"
+end
 
 group :development, :test do
   gem 'rspec-rails'
