@@ -13,6 +13,14 @@ require 'open-uri'
 
 doc = Nokogiri::HTML(open('http://www.learnathome.ru/blog/100-beautiful-words'))
 
+default_user = User.create(
+  email: 'admin@mail.com',
+  password: 'pass1234',
+  password_confirmation: 'pass1234'
+)
+
+default_user.add_role(:admin)
+
 doc.search('//table/tbody/tr').each do |row|
   original = row.search('td[2]/p')[0].content.downcase
   translated = row.search('td[1]/p')[0].content.downcase

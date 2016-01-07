@@ -1,4 +1,9 @@
 class ApplicationController < ActionController::Base
+
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to main_app.login_path, :alert => exception.message
+  end
+
   respond_to :html
 
   protect_from_forgery with: :exception
@@ -7,6 +12,8 @@ class ApplicationController < ActionController::Base
   private
 
   def set_locale
+    return I18n.locale = :en if [RailsAdmin].include?(self.class.parent)
+    
     locale = if current_user
                current_user.locale
              elsif params[:user_locale]
