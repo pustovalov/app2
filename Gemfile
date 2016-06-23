@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-ruby '2.3.0'
+ruby '2.3.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.5'
+gem 'rails', '4.2.6'
 # Use postgresql as the database for Active Record
 gem 'pg'
 gem 'sass-rails', '~> 4.0.3'
@@ -37,18 +37,24 @@ gem 'puma'
 gem 'rails_admin'
 gem 'rolify'
 gem 'cancancan', '~> 1.10'
+gem 'flickraw'
 
 group :development, :test do
-  gem "better_errors"
   gem "binding_of_caller"
-end
-
-group :development, :test do
+  gem "better_errors"
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'poltergeist'
+  gem 'quiet_assets'
   gem 'factory_girl_rails'
   gem 'byebug', '~> 8.0', '>= 8.0.1'
   gem 'pry-byebug', '~> 3.2', require: false
   gem 'parallel_tests'
-  gem 'travis'
+  gem 'database_cleaner'
+  # gem 'travis'
+end
+
+group :test do
+  gem 'webmock'
+  gem 'vcr'
 end

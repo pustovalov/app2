@@ -2,12 +2,16 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 9.5.3
+-- Dumped by pg_dump version 9.5.3
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 --
 -- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
@@ -30,7 +34,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: authentications; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: authentications; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE authentications (
@@ -63,7 +67,7 @@ ALTER SEQUENCE authentications_id_seq OWNED BY authentications.id;
 
 
 --
--- Name: blocks; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: blocks; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE blocks (
@@ -95,7 +99,7 @@ ALTER SEQUENCE blocks_id_seq OWNED BY blocks.id;
 
 
 --
--- Name: cards; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: cards; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE cards (
@@ -136,7 +140,7 @@ ALTER SEQUENCE cards_id_seq OWNED BY cards.id;
 
 
 --
--- Name: roles; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: roles; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE roles (
@@ -169,7 +173,7 @@ ALTER SEQUENCE roles_id_seq OWNED BY roles.id;
 
 
 --
--- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE schema_migrations (
@@ -178,7 +182,7 @@ CREATE TABLE schema_migrations (
 
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE users (
@@ -218,7 +222,7 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 
 
 --
--- Name: users_roles; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: users_roles; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE users_roles (
@@ -263,7 +267,7 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 
 
 --
--- Name: authentications_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: authentications_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY authentications
@@ -271,7 +275,7 @@ ALTER TABLE ONLY authentications
 
 
 --
--- Name: blocks_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: blocks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY blocks
@@ -279,7 +283,7 @@ ALTER TABLE ONLY blocks
 
 
 --
--- Name: cards_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: cards_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY cards
@@ -287,7 +291,7 @@ ALTER TABLE ONLY cards
 
 
 --
--- Name: roles_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: roles_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY roles
@@ -295,7 +299,7 @@ ALTER TABLE ONLY roles
 
 
 --
--- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY users
@@ -303,56 +307,56 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: index_authentications_on_provider_and_uid; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_authentications_on_provider_and_uid; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_authentications_on_provider_and_uid ON authentications USING btree (provider, uid);
 
 
 --
--- Name: index_roles_on_name; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_roles_on_name; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_roles_on_name ON roles USING btree (name);
 
 
 --
--- Name: index_roles_on_name_and_resource_type_and_resource_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_roles_on_name_and_resource_type_and_resource_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_roles_on_name_and_resource_type_and_resource_id ON roles USING btree (name, resource_type, resource_id);
 
 
 --
--- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_users_on_email ON users USING btree (email);
 
 
 --
--- Name: index_users_on_remember_me_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_users_on_remember_me_token; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_users_on_remember_me_token ON users USING btree (remember_me_token);
 
 
 --
--- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_users_on_reset_password_token ON users USING btree (reset_password_token);
 
 
 --
--- Name: index_users_roles_on_user_id_and_role_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_users_roles_on_user_id_and_role_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_users_roles_on_user_id_and_role_id ON users_roles USING btree (user_id, role_id);
 
 
 --
--- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
@@ -362,7 +366,7 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 -- PostgreSQL database dump complete
 --
 
-SET search_path TO "$user",public;
+SET search_path TO "$user", public;
 
 INSERT INTO schema_migrations (version) VALUES ('20150324181429');
 

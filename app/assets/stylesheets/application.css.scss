@@ -36,3 +36,32 @@
 .block_user_current_block_id {
   margin-left: 20px;
 }
+
+.img-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  img {
+    width: 200px;
+    height: 200px;
+  }
+
+  a {
+    display: block;
+  }
+
+  li {
+    margin-bottom: 20px;
+  }
+}
+
+
+.find-img {
+  .form-control {
+    margin-bottom: 10px;
+  }
+}

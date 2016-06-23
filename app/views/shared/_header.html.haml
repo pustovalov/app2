@@ -23,7 +23,7 @@
 
           %ul.nav.navbar-nav.navbar-right
             %li.dropdown
-              %a#dropdownMenu.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+              %a.dropdown-toggle.ac-dropdown-toggler#dropdownMenu{ "aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button" }
                 %span.glyphicon.glyphicon-user
                 %span.caret
               %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu"}
@@ -43,7 +43,7 @@
                   %li
                     = link_to t(:log_in_with_github_label), auth_at_provider_path(provider: :github), class: 'navbar-link'
                   %li
-                    = link_to t(:log_in_label), :login, class: 'navbar-link' |
+                    = link_to t(:log_in_label), :login, class: 'navbar-link ac-login-toggler' |
 
                   - I18n.available_locales.each do |locale|
                     %li

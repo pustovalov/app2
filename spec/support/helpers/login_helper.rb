@@ -1,9 +1,10 @@
 module LoginHelper
-  def login(email, password, action)
-    click_link action
+  def login(email, password)
+    find(".ac-dropdown-toggler").click
+    find(".ac-login-toggler").click
     fill_in 'email', with: email
     fill_in 'password', with: password
-    click_button action
+    find(".ac-login-button").click
   end
 
   def register(email, password, password_confirmation, action)
