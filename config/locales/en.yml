@@ -37,6 +37,14 @@ en:
   log_out_failed_provider_alert: "Log out of your account %{provider} failed."
   please_log_in: 'Please log in.'
   admin_label: 'Admin Panel'
+  save: 'Save'
+  remove_image: 'Remove image'
+  load_from_flickr: 'Load from Flickr'
+  find: 'Find'
+  decks: 'Decks'
+  select_deck: 'Select a deck'
+  image: 'Image'
+  try_again: 'Try Again'
 
   activerecord:
       errors:

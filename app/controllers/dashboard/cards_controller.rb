@@ -12,8 +12,16 @@ class Dashboard::CardsController < Dashboard::BaseController
   def edit
   end
 
+  def find
+    photos = Flickr.find(params[:request])
+    render json: { ok: true, photos: photos }
+  end
+
   def create
     @card = current_user.cards.build(card_params)
+    if params[:card][:remote_image_url]
+      @card.update_attributes(remote_image_url: params[:card][:remote_image_url])
+    end
     if @card.save
       redirect_to cards_path
     else
@@ -42,6 +50,7 @@ class Dashboard::CardsController < Dashboard::BaseController
 
   def card_params
     params.require(:card).permit(:original_text, :translated_text, :review_date,
-                                 :image, :image_cache, :remove_image, :block_id)
+                                 :image, :image_cache, :remove_image, :block_id,
+                                 :remote_image_url)
   end
 end

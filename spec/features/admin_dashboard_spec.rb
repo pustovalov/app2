@@ -15,7 +15,7 @@ feature 'Login to Admin dashboard' do
 
     before(:each) do
       visit root_path
-      login('test@test.com', '12345', 'Войти')
+      login('test@test.com', '12345')
       visit admin_path
     end
 

@@ -1,23 +1,43 @@
-= simple_form_for card do |f|
+= simple_form_for card, html: { multipart: true } do |f|
   .form-group
-    = f.input :original_text,  as: :text, label: 'Оригинал',
+    = f.input :original_text,  as: :text, label: t(:original_text_label),
               input_html: { class: 'form-control', required: true,
               autofocus: true }
   .form-group
-    = f.input :translated_text,  as: :text, label: 'Перевод',
+    = f.input :translated_text,  as: :text, label: t(:translated_text_label),
               input_html: { class: 'form-control', required: true }
   .form-group
-    = f.input :image, as: :file, label: 'Изображение'
+    = f.input :image, as: :file, label: t(:image)
     = f.input :image_cache, as: :hidden
+
+    = f.input :remote_image_url, as: :hidden, input_html: {class: "js-remote-url"}
+
+  .form-group
+    %a.btn.btn-default.ac-flickr-toggle{ data: { toggle: "collapse", target: "#collapse" } }
+      #{t(:load_from_flickr)}
+
+  .form-group.find-img.js-find-img{ data: { url: url_for(controller: 'cards', action: 'find') } }
+    .collapse#collapse
+      .form-group
+        %input.js-flick-field.form-control.ac-flickr-search-field
+        %button.js-flickr-search.btn.btn-default.ac-flickr-submit
+          #{t(:find)}
+
+      .form-group
+        %ul.js-photos.img-list
+
   .form-group
     = f.input :block_id, collection: current_user.blocks.all.order('title'),
-              prompt: 'Выберите колоду', label: 'Колоды',
+              prompt: t(:select_deck), label: t(:decks),
               input_html: { class: 'form-control', required: true }
+
+
   - if card.image?
     .form-group
-      = f.input :remove_image, as: :boolean, label: 'Удалить изображение'
+      = f.input :remove_image, as: :boolean, label: t(:remove_image)
       .row
         .col-xs-6.col-md-4.card_image
           %p.thumbnail
             = image_tag card.image_url
-  = f.button :submit, 'Сохранить', class: 'btn btn-default'
+
+  = f.button :submit, t(:save), class: 'btn-default'
